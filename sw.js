@@ -2,7 +2,7 @@
  * Cache-first offline shell. The whole game is one HTML file, so caching it
  * plus the manifest/icons makes the app open and play offline (online play
  * still needs a network for the peer/relay transport). */
-const VERSION = 'rummikub-0.23.0';
+const VERSION = 'rummikub-0.23.1';
 const CORE = [
   './',
   './index.html',
@@ -28,14 +28,21 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
-  e.respondWith(
-    caches.match(req).then((hit) => {
-      if (hit) return hit;
-      return fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
-        return res;
-      }).catch(() => caches.match('./index.html'));
-    })
-  );
+  const doc = req.mode === 'navigate' || req.destination === 'document';
+  const asset = req.destination === 'script' || req.destination === 'style';
+  // Network-first for the shell + its scripts/styles, so a new deploy is picked
+  // up on the next load; offline falls back to the cache.
+  if (doc || asset) {
+    e.respondWith(
+      fetch(req)
+        .then((res) => {
+          const copy = res.clone();
+          caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
+          return res;
+        })
+        .catch(() => caches.match(req).then((hit) => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+  e.respondWith(caches.match(req).then((hit) => hit || fetch(req)));
 });
