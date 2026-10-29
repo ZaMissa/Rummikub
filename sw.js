@@ -2,7 +2,7 @@
  * Cache-first offline shell. The whole game is one HTML file, so caching it
  * plus the manifest/icons makes the app open and play offline (online play
  * still needs a network for the peer/relay transport). */
-const VERSION = 'rummikub-0.7.0';
+const VERSION = 'rummikub-0.8.0';
 const CORE = [
   './',
   './index.html',
