@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#103f36">
+  <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.22.0">
-  <meta name="app-built" content="2026-10-29 14:44">
+  <meta name="app-version" content="0.23.0">
+  <meta name="app-built" content="2026-10-29 14:57">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -16,98 +16,85 @@
   <header class="topbar">
     <div class="brand">
       <span class="logo" aria-hidden="true">13</span>
-      <div class="brand-text">
-        <h1>Rummikub</h1>
-        <small id="mode-line">Pass &amp; Play</small>
-      </div>
+      <h1>Rummikub</h1>
     </div>
-    <div class="topbar-actions">
-      <button class="tbtn" data-action="new-game">New</button>
-      <button class="tbtn" data-action="live">Live</button>
-      <button class="tbtn" data-action="saves" title="Saved games">💾</button>
-      <button class="tbtn" data-action="backup" title="Backup / export">📦</button>
-      <button class="tbtn" data-action="activity" title="What happened">📜</button>
-      <button class="tbtn" data-action="stats" title="Stats">📊</button>
-      <button class="tbtn" data-action="settings" title="Settings">⚙</button>
+    <span id="mode-line">Pass &amp; Play</span>
+    <div class="row">
+      <button id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
+      <button id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
     </div>
   </header>
 
-  <nav class="players" id="players" aria-label="Players"></nav>
-  <div class="banner net" id="net-banner" hidden></div>
-  <div class="banner" id="banner" hidden></div>
+  <div class="banner net" id="net-banner" role="status" aria-live="polite" hidden></div>
 
-  <main class="board-wrap">
-    <section class="board" aria-label="Table">
-      <div class="board-head">
+  <div class="wrap">
+    <div class="players" id="players" aria-label="Players"></div>
+
+    <div class="status">
+      <div class="row between">
         <div>
-          <div class="board-title">Table</div>
-          <div class="board-sub" id="board-sub">Make a meld of 3+ tiles</div>
+          <strong id="turn-title">Ready to play</strong>
+          <small id="turn-sub"></small>
         </div>
-        <div class="chips">
-          <span class="chip" id="chip-mode">Standard</span>
-          <span class="chip" id="chip-round">Round 1</span>
-          <span class="chip" id="chip-pool">Pool 106</span>
-          <span class="chip" id="chip-ice">Min 30</span>
-          <span class="chip" id="chip-ver">v?</span>
-        </div>
+        <span id="pool">106 tiles</span>
       </div>
-      <div class="melds" id="melds"></div>
-      <button class="lastmove" id="last-move" data-action="history" hidden></button>
-    </section>
-  </main>
+      <div id="toast" role="status" aria-live="polite"></div>
+    </div>
 
-  <div class="dock">
-    <div class="dock-inner">
-      <div class="dock-head">
-        <div class="who"><span class="badge" id="seat-badge">Pass &amp; Play</span><b id="rack-title">Rack</b></div>
-        <div class="dock-tools">
-          <button class="tbtn" id="btn-undo" title="Undo last move">↩</button>
-          <button class="tbtn" id="btn-arrange" title="Arrange tiles (or press and hold a tile)">⇅ Arrange</button>
-          <span class="badge" id="sel-count">0 selected</span>
-          <button class="tbtn" id="btn-nudge" title="Nudge the current player" hidden>📣</button>
-          <button class="tbtn" id="btn-hand-tools" title="Hand &amp; table tools">•••</button>
-          <button class="tbtn" id="btn-collapse" title="Collapse the rack">⌄</button>
+    <section class="board" id="board">
+      <div class="melds" id="melds"></div>
+    </section>
+
+    <section class="rackpanel" id="rackpanel">
+      <div class="row between">
+        <div class="rackwho">
+          <b id="rack-title">Your hand</b>
+          <span class="pill" id="sel-count" aria-live="polite"></span>
+        </div>
+        <div class="toolbar">
+          <button id="btn-arrange" title="Arrange your rack">⇄ Arrange</button>
+          <button id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
+          <button id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
         </div>
       </div>
+      <p id="rack-hint">Tap a tile to select · press and hold to arrange</p>
       <div class="rack" id="rack"></div>
-      <div class="status" id="status"></div>
-      <div class="rack-hint" id="rack-hint">Tap a tile to select · press and hold to arrange</div>
+      <p class="hint" id="status"></p>
       <div class="actions" id="game-actions">
-        <button class="btn" id="btn-reset">Reset</button>
-        <button class="btn draw" id="btn-draw">Draw</button>
-        <button class="btn blue" id="btn-meld">+ Meld</button>
-        <button class="btn play" id="btn-play">End Turn</button>
+        <button id="btn-undo" title="Undo last move">↩</button>
+        <button id="btn-reset">Reset</button>
+        <button id="btn-draw">Draw</button>
+        <button id="btn-meld">＋ Meld</button>
+        <button class="primary" id="btn-play">End turn</button>
       </div>
       <div class="actions" id="arrange-actions" hidden>
-        <button class="btn" id="btn-undo-move" style="grid-column: span 2;">↶ Undo move</button>
-        <button class="btn" id="btn-clear-groups">⌫ Groups</button>
-        <button class="btn play" id="btn-done-arrange">✓ Done</button>
+        <button id="btn-undo-move">↶ Undo move</button>
+        <button id="btn-clear-groups">⌫ Groups</button>
+        <button class="primary" id="btn-done-arrange">✓ Done</button>
       </div>
-    </div>
-  </div>
-
-  <!-- Curtain (pass & play handover) -->
-  <div class="ov" id="ov-curtain" hidden>
-    <div class="curtain">
-      <div class="curtain-eye">🙈</div>
-      <div class="curtain-title" id="curtain-title">Pass the phone</div>
-      <div class="curtain-sub" id="curtain-sub">Tiles are hidden. Hand the device to the next player.</div>
-      <button class="btn play big" data-action="dismiss-curtain">I'm ready</button>
-    </div>
-  </div>
-
-  <!-- Draw reveal -->
-  <div class="ov" id="ov-draw" hidden>
-    <div class="curtain">
-      <div class="curtain-sub">You drew</div>
-      <div class="tile reveal" id="drawn-tile"><span class="n">?</span></div>
-      <div class="curtain-sub" id="drawn-msg">Added to your rack</div>
-      <button class="btn play big" data-action="draw-ok">Got it</button>
-    </div>
+    </section>
   </div>
 
   <div class="ov" id="ov-dialog" hidden>
     <div class="card" id="dialog-card"></div>
+  </div>
+
+  <!-- Pass & play handover + draw reveal -->
+  <div class="ov" id="ov-curtain" hidden>
+    <div class="curtaininner">
+      <div class="eyebrow">A little privacy</div>
+      <h2 id="curtain-title">Pass the phone</h2>
+      <p id="curtain-sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
+      <button class="primary" data-action="dismiss-curtain">I'm ready · Show my tiles</button>
+    </div>
+  </div>
+  <div class="ov" id="ov-draw" hidden>
+    <div class="curtaininner">
+      <div class="eyebrow">You drew</div>
+      <div class="tile reveal" id="drawn-tile"><span class="n">?</span></div>
+      <p id="drawn-msg">Added to your rack</p>
+      <button class="primary" data-action="draw-ok">Got it</button>
+    </div>
   </div>
 
   <script type="module" src="./assets/app.js"></script>
