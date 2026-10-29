@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#103f36">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.19.0">
-  <meta name="app-built" content="2026-10-29 14:16">
+  <meta name="app-version" content="0.21.0">
+  <meta name="app-built" content="2026-10-29 14:33">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -70,12 +70,18 @@
         </div>
       </div>
       <div class="rack" id="rack"></div>
+      <div class="status" id="status"></div>
       <div class="rack-hint" id="rack-hint">Tap a tile to select · press and hold to arrange</div>
-      <div class="actions">
+      <div class="actions" id="game-actions">
         <button class="btn" id="btn-reset">Reset</button>
         <button class="btn draw" id="btn-draw">Draw</button>
         <button class="btn blue" id="btn-meld">+ Meld</button>
         <button class="btn play" id="btn-play">End Turn</button>
+      </div>
+      <div class="actions" id="arrange-actions" hidden>
+        <button class="btn" id="btn-undo-move" style="grid-column: span 2;">↶ Undo move</button>
+        <button class="btn" id="btn-clear-groups">⌫ Groups</button>
+        <button class="btn play" id="btn-done-arrange">✓ Done</button>
       </div>
     </div>
   </div>
