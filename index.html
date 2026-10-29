@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.23.1">
-  <meta name="app-built" content="2026-10-29 15:16">
+  <meta name="app-version" content="0.24.0">
+  <meta name="app-built" content="2026-10-29 15:48">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -15,10 +15,9 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="logo" aria-hidden="true">13</span>
       <h1>Rummikub</h1>
     </div>
-    <span id="mode-line">Pass &amp; Play</span>
+    <span id="mode-line">On this phone</span>
     <div class="row">
       <button id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
       <button id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
@@ -32,11 +31,11 @@
 
     <div class="status">
       <div class="row between">
-        <div>
+        <div class="turnline">
           <strong id="turn-title">Ready to play</strong>
           <small id="turn-sub"></small>
         </div>
-        <span id="pool">106 tiles</span>
+        <span id="pool">106 in pool</span>
       </div>
       <div id="toast" role="status" aria-live="polite"></div>
     </div>
@@ -52,24 +51,28 @@
           <span class="pill" id="sel-count" aria-live="polite"></span>
         </div>
         <div class="toolbar">
-          <button id="btn-arrange" title="Arrange your rack">⇄ Arrange</button>
+          <button id="btn-arrange" title="Arrange your rack" aria-pressed="false">⇄ Arrange</button>
           <button id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
           <button id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
         </div>
       </div>
-      <p id="rack-hint">Tap a tile to select · press and hold to arrange</p>
+      <p id="rack-hint">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
+      <div id="arrange-options" class="row" hidden>
+        <button id="btn-group-gap">Gap before picked tile</button>
+        <button id="btn-clear-gaps">Clear gaps</button>
+        <button id="btn-to-end">To end →</button>
+      </div>
       <div class="rack" id="rack"></div>
       <p class="hint" id="status"></p>
       <div class="actions" id="game-actions">
-        <button id="btn-undo" title="Undo last move">↩</button>
-        <button id="btn-reset">Reset</button>
-        <button id="btn-draw">Draw</button>
+        <button id="btn-undo" title="Undo last move">↶</button>
         <button id="btn-meld">＋ Meld</button>
+        <button id="btn-draw">Draw</button>
         <button class="primary" id="btn-play">End turn</button>
       </div>
       <div class="actions" id="arrange-actions" hidden>
         <button id="btn-undo-move">↶ Undo move</button>
-        <button id="btn-clear-groups">⌫ Groups</button>
+        <button id="btn-cancel-pick">Cancel pick</button>
         <button class="primary" id="btn-done-arrange">✓ Done</button>
       </div>
     </section>
