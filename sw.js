@@ -2,10 +2,12 @@
  * Cache-first offline shell. The whole game is one HTML file, so caching it
  * plus the manifest/icons makes the app open and play offline (online play
  * still needs a network for the peer/relay transport). */
-const VERSION = 'rummikub-0.32.0';
+const VERSION = 'rummikub-0.32.1';
 const CORE = [
   './',
   './index.html',
+  './assets/app.js',
+  './assets/app.css',
   './manifest.webmanifest',
   './icons/icon-192.png',
   './icons/icon-512.png',
@@ -14,7 +16,10 @@ const CORE = [
 
 self.addEventListener('install', (e) => {
   self.skipWaiting();
-  e.waitUntil(caches.open(VERSION).then((c) => c.addAll(CORE)).catch(() => {}));
+  // Cache each entry on its own, so one 404 (e.g. the single-file build) can't
+  // stop the rest of the shell from being cached for offline use.
+  e.waitUntil(caches.open(VERSION).then((c) =>
+    Promise.allSettled(CORE.map((u) => c.add(u)))));
 });
 
 self.addEventListener('activate', (e) => {
