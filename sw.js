@@ -1,8 +1,9 @@
 /* Rummikub Table — service worker
- * Cache-first offline shell. The whole game is one HTML file, so caching it
- * plus the manifest/icons makes the app open and play offline (online play
- * still needs a network for the peer/relay transport). */
-const VERSION = 'rummikub-0.39.0';
+ * Network-first for the shell (page + assets) so a new deploy lands on the next
+ * load; cache-first for the rest; falls back to the cache when offline. The
+ * listed CORE entries are precached at install (each on its own, so a missing one
+ * — e.g. the single-file build — can't abort the rest). */
+const VERSION = 'rummikub-0.39.1';
 const CORE = [
   './',
   './index.html',
