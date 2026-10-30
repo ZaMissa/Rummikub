@@ -3,7 +3,7 @@
  * load; cache-first for the rest; falls back to the cache when offline. The
  * listed CORE entries are precached at install (each on its own, so a missing one
  * — e.g. the single-file build — can't abort the rest). */
-const VERSION = 'rummikub-0.41.15';
+const VERSION = 'rummikub-0.41.16';
 const CORE = [
   './',
   './index.html',
@@ -32,6 +32,12 @@ self.addEventListener('activate', (e) => {
       .then((keys) => Promise.all(keys.filter((k) => k !== VERSION).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
+});
+
+// A staged worker only takes over when the page asks it to (FUNC-15): the in-app
+// prompt posts this at a safe boundary, then the page reloads from controllerchange.
+self.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('fetch', (e) => {
