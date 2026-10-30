@@ -3,7 +3,7 @@
  * load; cache-first for the rest; falls back to the cache when offline. The
  * listed CORE entries are precached at install (each on its own, so a missing one
  * — e.g. the single-file build — can't abort the rest). */
-const VERSION = 'rummikub-0.40.0';
+const VERSION = 'rummikub-0.40.1';
 const CORE = [
   './',
   './index.html',
@@ -16,7 +16,10 @@ const CORE = [
 ];
 
 self.addEventListener('install', (e) => {
-  self.skipWaiting();
+  // Deliberately do NOT skipWaiting(): a new deploy is staged rather than taking
+  // over mid-session, so an update can never interrupt a pending/provisional
+  // move. It activates on the next launch (all tabs closed); the network-first
+  // fetch below still serves fresh assets meanwhile.
   // Cache each entry on its own, so one 404 (e.g. the single-file build) can't
   // stop the rest of the shell from being cached for offline use.
   e.waitUntil(caches.open(VERSION).then((c) =>
