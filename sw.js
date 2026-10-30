@@ -3,7 +3,7 @@
  * load; cache-first for the rest; falls back to the cache when offline. The
  * listed CORE entries are precached at install (each on its own, so a missing one
  * — e.g. the single-file build — can't abort the rest). */
-const VERSION = 'rummikub-0.39.1';
+const VERSION = 'rummikub-0.40.0';
 const CORE = [
   './',
   './index.html',

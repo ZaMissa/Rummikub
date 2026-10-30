@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.39.1">
-  <meta name="app-built" content="2026-10-30 00:25">
+  <meta name="app-version" content="0.40.0">
+  <meta name="app-built" content="2026-10-30 00:57">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -83,21 +83,13 @@
     <div class="card" id="dialog-card"></div>
   </div>
 
-  <!-- Pass & play handover + draw reveal -->
+  <!-- Pass & play handover (privacy curtain) -->
   <div class="ov" id="ov-curtain" hidden>
     <div class="curtaininner">
       <div class="eyebrow">A little privacy</div>
       <h2 id="curtain-title">Pass the phone</h2>
       <p id="curtain-sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
       <button class="primary" data-action="dismiss-curtain">I'm ready · Show my tiles</button>
-    </div>
-  </div>
-  <div class="ov" id="ov-draw" hidden>
-    <div class="curtaininner">
-      <div class="eyebrow">You drew</div>
-      <div class="tile reveal" id="drawn-tile"><span class="n">?</span></div>
-      <p id="drawn-msg">Added to your rack</p>
-      <button class="primary" data-action="draw-ok">Got it</button>
     </div>
   </div>
 
