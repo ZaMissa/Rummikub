@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.51">
-  <meta name="app-built" content="2026-10-31 13:16">
+  <meta name="app-version" content="0.41.52">
+  <meta name="app-built" content="2026-10-31 14:03">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -50,7 +50,11 @@
       <!-- [UIU-19] One control strip above the hand. The action bar used to sit *below* the
            hand, so the felt paid for two rows of controls; they now share this one. -->
       <div class="rackstrip">
-        <span class="pill" id="sel-count" aria-live="polite"></span>
+        <span class="rackstate">
+          <span class="pill" id="sel-count" aria-live="polite"></span>
+          <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
+          <button class="btn btn--chip" id="btn-rack-mode" hidden title="Show the hand in more lines">Multi</button>
+        </span>
         <b class="rackwho" id="rack-title">Your hand</b>
         <div class="actions actions--game" id="game-actions">
           <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
