@@ -27,7 +27,13 @@ The **Home** screen asks for your name and offers three ways in:
 - **Pass & play** — one phone, hands passed around.
 - **Host online** — you create the table and share an invite (copy it, send it over
   WhatsApp, or send a **join link** that pre-fills everything).
-- **Join online** — paste an invite, follow a link, or type the room code.
+- **Join online** — paste the host's full invite or follow a join link. A room code alone
+  does not contain the encryption key.
+
+Every launch starts at Home. **Continue offline game**, **Reconnect to table**, and
+**Saved games** restore an existing game. Each online save remembers its own room and
+player identity. To change games, use **☰ → Home** first; leaving an online table asks
+for confirmation. Creating an online room starts a separate game.
 
 In pass & play, finish your turn and hand the phone over — the next hand stays hidden until
 its owner taps to reveal it. Online, every phone sees only its own rack.
@@ -88,7 +94,7 @@ Online play needs both players online at the same time over an encrypted relay c
 ## Notes
 
 - This repository contains **the built game only** — the playable output of a private
-  source tree. The build is versioned: the version this page was built from is **v0.41.57**
+  source tree. The build is versioned: the version this page was built from is **v0.41.59**
   and it is also shown on screen (☰ menu), so you can tell which build your phone is running.
 - The app is installable/offline via a service worker; when a new version is published your
   phone picks it up on the next launch.
