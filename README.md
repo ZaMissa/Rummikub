@@ -88,7 +88,7 @@ Online play needs both players online at the same time over an encrypted relay c
 ## Notes
 
 - This repository contains **the built game only** — the playable output of a private
-  source tree. The build is versioned: the version this page was built from is **v0.41.25**
+  source tree. The build is versioned: the version this page was built from is **v0.41.26**
   and it is also shown on screen (☰ menu), so you can tell which build your phone is running.
 - The app is installable/offline via a service worker; when a new version is published your
   phone picks it up on the next launch.
