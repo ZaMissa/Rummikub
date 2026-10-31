@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.60">
-  <meta name="app-built" content="2026-10-31 18:28">
+  <meta name="app-version" content="0.41.61">
+  <meta name="app-built" content="2026-10-31 19:18">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -17,10 +17,11 @@
     <div class="brand">
       <h1>Rummikub</h1>
     </div>
-    <span id="mode-line">On this phone</span>
-    <div class="row row--nowrap">
+    <span class="mode-line" id="mode-line">On this phone</span>
+    <div class="row row--nowrap header-actions">
       <button class="btn btn--icon" id="awayBadge" hidden title="What happened while you were away">Updates</button>
       <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
+      <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
       <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
     </div>
   </header>
@@ -37,7 +38,7 @@
           <small id="turn-sub"></small>
           <p class="hint statusline" id="status"></p>
         </div>
-        <span id="pool">106 in pool</span>
+        <span class="pool" id="pool">106 in pool</span>
       </div>
       <div id="toast" role="status" aria-live="polite"></div>
     </div>
@@ -47,8 +48,8 @@
     </section>
 
     <section class="rackpanel" id="rackpanel">
-      <!-- [UIU-19] One control strip above the hand. The action bar used to sit *below* the
-           hand, so the felt paid for two rows of controls; they now share this one. -->
+      <!-- Hand identity and tools above the tiles; turn actions sit at the thumb edge.
+           Short landscape puts the actions back beside the tools to protect the table. -->
       <div class="rackstrip">
         <span class="rackstate">
           <span class="pill" id="sel-count" aria-live="polite"></span>
@@ -56,17 +57,6 @@
           <button class="btn btn--chip" id="btn-rack-mode" hidden title="Show the hand in more lines">Multi</button>
         </span>
         <b class="rackwho" id="rack-title">Your hand</b>
-        <div class="actions actions--game" id="game-actions">
-          <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
-          <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl">Meld</span></button>
-          <button class="btn btn--draw" id="btn-draw">Draw</button>
-          <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
-        </div>
-        <div class="actions actions--arrange" id="arrange-actions" hidden>
-          <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl">Undo move</span></button>
-          <button class="btn" id="btn-cancel-pick">Cancel pick</button>
-          <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl">Done</span></button>
-        </div>
         <div class="toolbar">
           <button class="btn btn--arrange" id="btn-arrange" aria-labelledby="arrange-label" title="Arrange your rack" aria-pressed="false"><span class="ico" aria-hidden="true">⇄</span> <span class="lbl" id="arrange-label">Arrange</span></button>
           <button class="btn btn--icon" id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
@@ -80,6 +70,17 @@
         <button class="btn" id="btn-to-end">To end →</button>
       </div>
       <div class="rack" id="rack"></div>
+      <div class="actions actions--game" id="game-actions">
+        <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
+        <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl">Meld</span></button>
+        <button class="btn btn--draw" id="btn-draw">Draw</button>
+        <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
+      </div>
+      <div class="actions actions--arrange" id="arrange-actions" hidden>
+        <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl">Undo move</span></button>
+        <button class="btn" id="btn-cancel-pick">Cancel pick</button>
+        <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl">Done</span></button>
+      </div>
     </section>
   </div>
 
