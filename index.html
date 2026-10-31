@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.43">
-  <meta name="app-built" content="2026-10-31 06:00">
+  <meta name="app-version" content="0.41.45">
+  <meta name="app-built" content="2026-10-31 10:42">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -35,6 +35,7 @@
         <div class="turnline">
           <strong id="turn-title">Ready to play</strong>
           <small id="turn-sub"></small>
+          <p class="hint statusline" id="status"></p>
         </div>
         <span id="pool">106 in pool</span>
       </div>
@@ -64,7 +65,6 @@
         <button class="btn" id="btn-to-end">To end →</button>
       </div>
       <div class="rack" id="rack"></div>
-      <p class="hint" id="status"></p>
       <div class="actions actions--game" id="game-actions">
         <button class="btn btn--undo" id="btn-undo" title="Undo last move">↶</button>
         <button class="btn btn--meld" id="btn-meld">＋ Meld</button>
