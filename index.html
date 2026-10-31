@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.36">
-  <meta name="app-built" content="2026-10-31 04:34">
+  <meta name="app-version" content="0.41.37">
+  <meta name="app-built" content="2026-10-31 04:44">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -19,9 +19,9 @@
     </div>
     <span id="mode-line">On this phone</span>
     <div class="row">
-      <button id="awayBadge" hidden title="What happened while you were away">Updates</button>
-      <button id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
-      <button id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
+      <button class="btn btn--icon" id="awayBadge" hidden title="What happened while you were away">Updates</button>
+      <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
+      <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
     </div>
   </header>
 
@@ -52,29 +52,29 @@
           <span class="pill" id="sel-count" aria-live="polite"></span>
         </div>
         <div class="toolbar">
-          <button id="btn-arrange" title="Arrange your rack" aria-pressed="false">⇄ Arrange</button>
-          <button id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
-          <button id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
+          <button class="btn btn--arrange" id="btn-arrange" title="Arrange your rack" aria-pressed="false">⇄ Arrange</button>
+          <button class="btn btn--icon" id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
+          <button class="btn btn--icon btn--glyph" id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
         </div>
       </div>
       <p id="rack-hint">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
       <div id="arrange-options" class="row" hidden>
-        <button id="btn-group-gap">Gap before picked tile</button>
-        <button id="btn-clear-gaps">Clear gaps</button>
-        <button id="btn-to-end">To end →</button>
+        <button class="btn" id="btn-group-gap">Gap before picked tile</button>
+        <button class="btn" id="btn-clear-gaps">Clear gaps</button>
+        <button class="btn" id="btn-to-end">To end →</button>
       </div>
       <div class="rack" id="rack"></div>
       <p class="hint" id="status"></p>
-      <div class="actions" id="game-actions">
-        <button id="btn-undo" title="Undo last move">↶</button>
-        <button id="btn-meld">＋ Meld</button>
-        <button id="btn-draw">Draw</button>
-        <button class="primary" id="btn-play">End turn</button>
+      <div class="actions actions--game" id="game-actions">
+        <button class="btn btn--undo" id="btn-undo" title="Undo last move">↶</button>
+        <button class="btn btn--meld" id="btn-meld">＋ Meld</button>
+        <button class="btn btn--draw" id="btn-draw">Draw</button>
+        <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
       </div>
-      <div class="actions" id="arrange-actions" hidden>
-        <button id="btn-undo-move">↶ Undo move</button>
-        <button id="btn-cancel-pick">Cancel pick</button>
-        <button class="primary" id="btn-done-arrange">✓ Done</button>
+      <div class="actions actions--arrange" id="arrange-actions" hidden>
+        <button class="btn btn--undo-move" id="btn-undo-move">↶ Undo move</button>
+        <button class="btn" id="btn-cancel-pick">Cancel pick</button>
+        <button class="btn btn--primary btn--done" id="btn-done-arrange">✓ Done</button>
       </div>
     </section>
   </div>
@@ -89,7 +89,7 @@
       <div class="eyebrow">A little privacy</div>
       <h2 id="curtain-title">Pass the phone</h2>
       <p id="curtain-sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
-      <button class="primary" data-action="dismiss-curtain">I'm ready · Show my tiles</button>
+      <button class="btn btn--primary" data-action="dismiss-curtain">I'm ready · Show my tiles</button>
     </div>
   </div>
 
