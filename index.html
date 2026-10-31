@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.50">
-  <meta name="app-built" content="2026-10-31 12:31">
+  <meta name="app-version" content="0.41.51">
+  <meta name="app-built" content="2026-10-31 13:16">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -47,35 +47,35 @@
     </section>
 
     <section class="rackpanel" id="rackpanel">
-      <div class="row row--between">
-        <div class="rackwho">
-          <b id="rack-title">Your hand</b>
-          <span class="pill" id="sel-count" aria-live="polite"></span>
+      <!-- [UIU-19] One control strip above the hand. The action bar used to sit *below* the
+           hand, so the felt paid for two rows of controls; they now share this one. -->
+      <div class="rackstrip">
+        <span class="pill" id="sel-count" aria-live="polite"></span>
+        <b class="rackwho" id="rack-title">Your hand</b>
+        <div class="actions actions--game" id="game-actions">
+          <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
+          <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl">Meld</span></button>
+          <button class="btn btn--draw" id="btn-draw">Draw</button>
+          <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
+        </div>
+        <div class="actions actions--arrange" id="arrange-actions" hidden>
+          <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl">Undo move</span></button>
+          <button class="btn" id="btn-cancel-pick">Cancel pick</button>
+          <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl">Done</span></button>
         </div>
         <div class="toolbar">
-          <button class="btn btn--arrange" id="btn-arrange" title="Arrange your rack" aria-pressed="false">⇄ Arrange</button>
+          <button class="btn btn--arrange" id="btn-arrange" aria-labelledby="arrange-label" title="Arrange your rack" aria-pressed="false"><span class="ico" aria-hidden="true">⇄</span> <span class="lbl" id="arrange-label">Arrange</span></button>
           <button class="btn btn--icon" id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
           <button class="btn btn--icon btn--glyph" id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
         </div>
       </div>
       <p id="rack-hint">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
-      <div id="arrange-options" class="row" hidden>
+      <div id="arrange-options" class="row arrange-options" hidden>
         <button class="btn" id="btn-group-gap">Gap before picked tile</button>
         <button class="btn" id="btn-clear-gaps">Clear gaps</button>
         <button class="btn" id="btn-to-end">To end →</button>
       </div>
       <div class="rack" id="rack"></div>
-      <div class="actions actions--game" id="game-actions">
-        <button class="btn btn--undo" id="btn-undo" title="Undo last move">↶</button>
-        <button class="btn btn--meld" id="btn-meld">＋ Meld</button>
-        <button class="btn btn--draw" id="btn-draw">Draw</button>
-        <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
-      </div>
-      <div class="actions actions--arrange" id="arrange-actions" hidden>
-        <button class="btn btn--undo-move" id="btn-undo-move">↶ Undo move</button>
-        <button class="btn" id="btn-cancel-pick">Cancel pick</button>
-        <button class="btn btn--primary btn--done" id="btn-done-arrange">✓ Done</button>
-      </div>
     </section>
   </div>
 
