@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.37">
-  <meta name="app-built" content="2026-10-31 04:44">
+  <meta name="app-version" content="0.41.38">
+  <meta name="app-built" content="2026-10-31 04:50">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -18,7 +18,7 @@
       <h1>Rummikub</h1>
     </div>
     <span id="mode-line">On this phone</span>
-    <div class="row">
+    <div class="row row--nowrap">
       <button class="btn btn--icon" id="awayBadge" hidden title="What happened while you were away">Updates</button>
       <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
       <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
@@ -31,7 +31,7 @@
     <div class="players" id="players" aria-label="Players"></div>
 
     <div class="status">
-      <div class="row between">
+      <div class="row row--between row--nowrap">
         <div class="turnline">
           <strong id="turn-title">Ready to play</strong>
           <small id="turn-sub"></small>
@@ -46,7 +46,7 @@
     </section>
 
     <section class="rackpanel" id="rackpanel">
-      <div class="row between">
+      <div class="row row--between">
         <div class="rackwho">
           <b id="rack-title">Your hand</b>
           <span class="pill" id="sel-count" aria-live="polite"></span>
