@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.73">
-  <meta name="app-built" content="2026-11-01 17:58">
+  <meta name="app-version" content="0.41.74">
+  <meta name="app-built" content="2026-11-01 18:57">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -97,13 +97,14 @@
     <div class="card" id="dialog-card"></div>
   </div>
 
-  <!-- Pass & play handover (privacy curtain) -->
+  <!-- The turn signal (slice 0): one "who plays next" notice for every table. In pass
+       & play it gates the hand-over; online and solo it auto-dismisses. -->
   <div class="ov" id="ov-curtain" hidden>
     <div class="curtaininner">
-      <div class="eyebrow" data-i18n="curtain.eyebrow">A little privacy</div>
+      <div class="eyebrow" id="curtain-eyebrow" data-i18n="curtain.eyebrow">Pass &amp; play</div>
       <h2 id="curtain-title" data-i18n="curtain.title">Pass the phone</h2>
-      <p id="curtain-sub" data-i18n="curtain.sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
-      <button class="btn btn--primary" data-action="dismiss-curtain" data-i18n="curtain.ready">I'm ready · Show my stones</button>
+      <p id="curtain-sub" data-i18n="curtain.sub">Hand over the phone. Stones stay hidden until the next player is ready.</p>
+      <button class="btn btn--primary" id="curtain-btn" data-action="dismiss-curtain" data-i18n="curtain.ready">I'm ready · Show my stones</button>
     </div>
   </div>
 
