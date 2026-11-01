@@ -7,7 +7,7 @@
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
   <meta name="app-version" content="0.41.70">
-  <meta name="app-built" content="2026-11-01 04:36">
+  <meta name="app-built" content="2026-11-01 05:19">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -48,6 +48,16 @@
     </section>
 
     <section class="rackpanel" id="rackpanel">
+      <!-- The in-game Hand & table drawer (v0.41.70): compact controls that slide out ABOVE the
+           strip and leave the hand + felt visible, so a sort/hide/tile-size tap shows its effect
+           immediately. Opened by •••; the rows are the same options the sheet renders. -->
+      <div class="drawer" id="hand-drawer" data-i18n-aria="hand.title" aria-label="Hand &amp; table">
+        <div class="drawer-head">
+          <b data-i18n="hand.title">Hand &amp; table</b>
+          <button class="btn btn--icon" id="btn-drawer-close" data-i18n-aria="common.close" aria-label="Close">×</button>
+        </div>
+        <div class="drawer-body" id="drawer-body"></div>
+      </div>
       <!-- Collapse lives on the panel's border, not inside the control strip (v0.41.68). -->
       <button class="btn btn--glyph rack-handle" id="btn-collapse" data-i18n-aria="device.rackCollapse" data-i18n-title="device.rackToggleTitle" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
       <!-- One control strip: [Undo] [contextual primary] + [Arrange] [more]. Placement (above or
