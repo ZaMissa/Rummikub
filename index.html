@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.68">
-  <meta name="app-built" content="2026-11-01 03:03">
+  <meta name="app-version" content="0.41.69">
+  <meta name="app-built" content="2026-11-01 03:30">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -74,7 +74,7 @@
         <div class="toolbar">
           <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
           <button class="btn btn--chip" id="btn-rack-mode" hidden data-i18n="game.rackModeMulti" data-i18n-title="game.rackModeTitle" title="Show the hand in more lines">Multi</button>
-          <button class="btn btn--arrange" id="btn-arrange" aria-labelledby="arrange-label" data-i18n-title="game.arrangeTitle" title="Arrange your rack" aria-pressed="false"><span class="ico" aria-hidden="true">⇄</span> <span class="lbl" id="arrange-label" data-i18n="game.arrangeLabel">Arrange</span></button>
+          <button class="btn btn--icon btn--arrange" id="btn-arrange" data-i18n-aria="game.arrangeLabel" data-i18n-title="game.arrangeTitle" aria-label="Arrange your rack" title="Arrange your rack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13m-4-4 4 4-4 4M20 15H7m4-4-4 4 4 4"/></svg></button>
           <button class="btn btn--icon" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
         </div>
       </div>
