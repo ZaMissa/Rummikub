@@ -36,20 +36,20 @@ player identity. To change games, use **☰ → Home** first; leaving an online 
 for confirmation. Creating an online room starts a separate game.
 
 In pass & play, finish your turn and hand the phone over — the next hand stays hidden until
-its owner taps to reveal it. Online, every phone sees only its own rack.
+its owner taps to reveal it. Online, every phone sees only its own hand.
 
 ## Play
 
-Tap tiles to select them, then **＋ Meld** to lay a new meld, or tap a meld's **＋ Add here**
-to extend it. Groups are 3–4 tiles of one number in different colours; runs are 3 or more
-consecutive numbers in one colour. Jokers stand in for any tile and hold their slot.
+Tap stones to select them, then **＋ Meld** to lay a new meld, or tap a meld's **＋ Add here**
+to extend it. Groups are 3–4 stones of one number in different colours; runs are 3 or more
+consecutive numbers in one colour. Jokers stand in for any stone and hold their slot.
 
-A line under your rack always tells you what the game expects next — *"Opening meld: play 30+
-points…"*, *"Tap ＋ Meld to play these 3 tiles"*, *"All melds valid · end your turn when
+A line under your hand always tells you what the game expects next — *"Opening meld: play 30+
+points…"*, *"Tap ＋ Meld to play these 3 stones"*, *"All melds valid · end your turn when
 ready"* — and turns red when a selection cannot be played. Once you have opened, you may
 split and rearrange the whole table.
 
-| Mode | Numbers | Jokers | Rack | Opening |
+| Mode | Numbers | Jokers | Hand | Opening |
 |---|---|---|---|---|
 | **Standard** | 1–13 | 2 | 14 | 30 points |
 | **Blitz · 2 jokers** | 1–7 | 2 | 7 | 15 points |
@@ -57,15 +57,20 @@ split and rearrange the whole table.
 
 Everyone at an online table plays the mode the host chose.
 
+## Language
+
+The game is available in **English and Serbian (Latin)**. Switch from the in-game menu —
+**Options → This device → Language** — and your choice is remembered on your device.
+
 ## What is in it
 
-- **A table-first screen** — the felt gets the room, the rack sits below it in the flow (so
+- **A table-first screen** — the felt gets the room, the hand sits below it in the flow (so
   the last meld is never covered), and the newest meld is outlined with a *"player · +N"* tag
   so you can see what just moved.
-- **Arrange mode** — pick a tile, then tap the left or right half of another to place it
+- **Arrange mode** — pick a stone, then tap the left or right half of another to place it
   exactly where you want. Full undo.
 - **Rounds and scoring** — the round winner takes the value of everyone else's remaining
-  tiles (a joker in hand counts 30); totals accumulate and the starting player rotates.
+  stones (a joker in hand counts 30); totals accumulate and the starting player rotates.
 - **Match history and stats** — head-to-head record, rounds, draws, current streak and an
   all-time table, saved on your own device.
 - **Saved games** — every table autosaves, with a rolling recovery snapshot so a crash or a
@@ -79,7 +84,7 @@ Everyone at an online table plays the mode the host chose.
 ## Privacy
 
 - **Your hand is yours.** Online, the host sends each guest only a *projection*: your own
-  rack. Other people's tiles, the pool order and the seat list are never sent to your phone.
+  hand. Other people's stones, the pool order and the seat list are never sent to your phone.
 - **Seats are protected.** A 4–8 digit PIN guards your seat, and it never leaves your device
   — a same-named impostor with the wrong PIN is refused.
 - **The host cannot be forged.** Guests verify an ECDSA signature on every board, so nobody
