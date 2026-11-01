@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.62">
-  <meta name="app-built" content="2026-10-31 22:57">
+  <meta name="app-version" content="0.41.64">
+  <meta name="app-built" content="2026-11-01 00:44">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -64,17 +64,18 @@
         </div>
       </div>
       <p id="rack-hint">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
-      <div id="arrange-options" class="row arrange-options" hidden>
-        <button class="btn" id="btn-group-gap">Gap before picked tile</button>
-        <button class="btn" id="btn-clear-gaps">Clear gaps</button>
-        <button class="btn" id="btn-to-end">To end →</button>
-      </div>
       <div class="rack" id="rack"></div>
       <div class="actions actions--game" id="game-actions">
         <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
         <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl">Meld</span></button>
         <button class="btn btn--draw" id="btn-draw">Draw</button>
         <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
+      </div>
+      <!-- A finished round has no in-game action left, so this swaps in for #game-actions
+           (see syncRoundActions) and gives the table its two ways forward. -->
+      <div class="actions actions--round" id="round-actions" hidden>
+        <button class="btn btn--primary" id="btn-next-round">Next round</button>
+        <button class="btn" id="btn-new-game">New game</button>
       </div>
       <div class="actions actions--arrange" id="arrange-actions" hidden>
         <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl">Undo move</span></button>
