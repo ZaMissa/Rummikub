@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.67">
-  <meta name="app-built" content="2026-11-01 02:12">
+  <meta name="app-version" content="0.41.68">
+  <meta name="app-built" content="2026-11-01 03:03">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -17,24 +17,24 @@
     <div class="brand">
       <h1>Rummikub</h1>
     </div>
-    <span class="mode-line" id="mode-line">On this phone</span>
+    <span class="mode-line" id="mode-line" data-i18n="mode.onThisPhone">On this phone</span>
     <div class="row row--nowrap header-actions">
-      <button class="btn btn--icon" id="awayBadge" hidden title="What happened while you were away">Updates</button>
-      <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden title="Nudge the current player">Nudge</button>
-      <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
-      <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" aria-label="Game menu">☰</button>
+      <button class="btn btn--icon" id="awayBadge" hidden data-i18n="header.updates" data-i18n-title="header.updatesTitle" title="What happened while you were away">Updates</button>
+      <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden data-i18n="header.nudge" data-i18n-title="header.nudgeTitle" title="Nudge the current player">Nudge</button>
+      <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" data-i18n-aria="device.enterFullscreen" data-i18n-title="device.enterFullscreen" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
+      <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" data-i18n-aria="header.gameMenu" aria-label="Game menu">☰</button>
     </div>
   </header>
 
   <div class="banner net" id="net-banner" role="status" aria-live="polite" hidden></div>
 
   <div class="wrap">
-    <div class="players" id="players" aria-label="Players"></div>
+    <div class="players" id="players" data-i18n-aria="hud.playersAria" aria-label="Players"></div>
 
     <div class="status">
       <div class="row row--between row--nowrap">
         <div class="turnline">
-          <strong id="turn-title">Ready to play</strong>
+          <strong id="turn-title" data-i18n="hud.readyToPlay">Ready to play</strong>
           <small id="turn-sub"></small>
           <p class="hint statusline" id="status"></p>
         </div>
@@ -48,40 +48,38 @@
     </section>
 
     <section class="rackpanel" id="rackpanel">
-      <!-- Hand identity and tools above the tiles; turn actions sit at the thumb edge.
-           Short landscape puts the actions back beside the tools to protect the table. -->
-      <div class="rackstrip">
-        <span class="rackstate">
-          <span class="pill" id="sel-count" aria-live="polite"></span>
-          <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
-          <button class="btn btn--chip" id="btn-rack-mode" hidden title="Show the hand in more lines">Multi</button>
-        </span>
-        <b class="rackwho" id="rack-title">Your hand</b>
+      <!-- Collapse lives on the panel's border, not inside the control strip (v0.41.68). -->
+      <button class="btn btn--glyph rack-handle" id="btn-collapse" data-i18n-aria="device.rackCollapse" data-i18n-title="device.rackToggleTitle" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
+      <!-- One control strip: [Undo] [contextual primary] + [Arrange] [more]. Placement (above or
+           below the hand) is a setting; the default is above. In Arrange the strip swaps to the
+           arrange actions (see syncArrangeUI). -->
+      <div class="controlstrip">
+        <div class="actions actions--game" id="game-actions">
+          <button class="btn btn--undo" id="btn-undo" data-i18n-aria="game.undoLast" data-i18n-title="game.undoLast" aria-label="Undo last move" title="Undo last move">↶</button>
+          <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl" data-i18n="board.meld">Meld</span></button>
+          <button class="btn btn--draw" id="btn-draw" data-i18n="game.draw">Draw</button>
+          <button class="btn btn--primary btn--play" id="btn-play" data-i18n="game.endTurn">End turn</button>
+        </div>
+        <!-- A finished round has no in-game action left, so this swaps in for #game-actions
+             (see syncRoundActions) and gives the table its two ways forward. -->
+        <div class="actions actions--round" id="round-actions" hidden>
+          <button class="btn btn--primary" id="btn-next-round" data-i18n="game.nextRound">Next round</button>
+          <button class="btn" id="btn-new-game" data-i18n="common.newGame">New game</button>
+        </div>
+        <div class="actions actions--arrange" id="arrange-actions" hidden>
+          <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl" data-i18n="game.undoMove">Undo move</span></button>
+          <button class="btn" id="btn-cancel-pick" data-i18n="game.cancelPick">Cancel pick</button>
+          <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl" data-i18n="common.done">Done</span></button>
+        </div>
         <div class="toolbar">
-          <button class="btn btn--arrange" id="btn-arrange" aria-labelledby="arrange-label" title="Arrange your rack" aria-pressed="false"><span class="ico" aria-hidden="true">⇄</span> <span class="lbl" id="arrange-label">Arrange</span></button>
-          <button class="btn btn--icon" id="btn-hand-tools" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
-          <button class="btn btn--icon btn--glyph" id="btn-collapse" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
+          <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
+          <button class="btn btn--chip" id="btn-rack-mode" hidden data-i18n="game.rackModeMulti" data-i18n-title="game.rackModeTitle" title="Show the hand in more lines">Multi</button>
+          <button class="btn btn--arrange" id="btn-arrange" aria-labelledby="arrange-label" data-i18n-title="game.arrangeTitle" title="Arrange your rack" aria-pressed="false"><span class="ico" aria-hidden="true">⇄</span> <span class="lbl" id="arrange-label" data-i18n="game.arrangeLabel">Arrange</span></button>
+          <button class="btn btn--icon" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
         </div>
       </div>
-      <p id="rack-hint">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
+      <p id="rack-hint" data-i18n="rackHint.arrange">Pick a tile. Tap the left half of another tile for before, or its right half for after.</p>
       <div class="rack" id="rack"></div>
-      <div class="actions actions--game" id="game-actions">
-        <button class="btn btn--undo" id="btn-undo" aria-label="Undo last move" title="Undo last move">↶</button>
-        <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl">Meld</span></button>
-        <button class="btn btn--draw" id="btn-draw">Draw</button>
-        <button class="btn btn--primary btn--play" id="btn-play">End turn</button>
-      </div>
-      <!-- A finished round has no in-game action left, so this swaps in for #game-actions
-           (see syncRoundActions) and gives the table its two ways forward. -->
-      <div class="actions actions--round" id="round-actions" hidden>
-        <button class="btn btn--primary" id="btn-next-round">Next round</button>
-        <button class="btn" id="btn-new-game">New game</button>
-      </div>
-      <div class="actions actions--arrange" id="arrange-actions" hidden>
-        <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl">Undo move</span></button>
-        <button class="btn" id="btn-cancel-pick">Cancel pick</button>
-        <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl">Done</span></button>
-      </div>
     </section>
   </div>
 
@@ -92,10 +90,10 @@
   <!-- Pass & play handover (privacy curtain) -->
   <div class="ov" id="ov-curtain" hidden>
     <div class="curtaininner">
-      <div class="eyebrow">A little privacy</div>
-      <h2 id="curtain-title">Pass the phone</h2>
-      <p id="curtain-sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
-      <button class="btn btn--primary" data-action="dismiss-curtain">I'm ready · Show my tiles</button>
+      <div class="eyebrow" data-i18n="curtain.eyebrow">A little privacy</div>
+      <h2 id="curtain-title" data-i18n="curtain.title">Pass the phone</h2>
+      <p id="curtain-sub" data-i18n="curtain.sub">Hand over the phone. The next rack is hidden until its owner is ready.</p>
+      <button class="btn btn--primary" data-action="dismiss-curtain" data-i18n="curtain.ready">I'm ready · Show my tiles</button>
     </div>
   </div>
 
