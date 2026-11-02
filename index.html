@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.74">
-  <meta name="app-built" content="2026-11-01 18:57">
+  <meta name="app-version" content="0.41.80">
+  <meta name="app-built" content="2026-11-02 15:53">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -61,14 +61,18 @@
       <!-- Collapse lives on the panel's border, not inside the control strip (v0.41.68). -->
       <button class="btn btn--glyph rack-handle" id="btn-collapse" data-i18n-aria="device.rackCollapse" data-i18n-title="device.rackToggleTitle" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
       <!-- One control strip: [Undo] [contextual primary] + [Arrange] [more]. Placement (above or
-           below the hand) is a setting; the default is above. In Arrange the strip swaps to the
-           arrange actions (see syncArrangeUI). -->
+           below the hand) is a setting; the default is above. Arrange does not add a second row —
+           the same strip swaps contents to [Undo move] [Sort] [Done], so the play actions are absent
+           while arranging (UIU-27, decisions #17–#18). See syncActionBar(). -->
       <div class="controlstrip">
         <div class="actions actions--game" id="game-actions">
           <button class="btn btn--undo" id="btn-undo" data-i18n-aria="game.undoLast" data-i18n-title="game.undoLast" aria-label="Undo last move" title="Undo last move">↶</button>
           <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl" data-i18n="board.meld">Meld</span></button>
           <button class="btn btn--draw" id="btn-draw" data-i18n="game.draw">Draw</button>
           <button class="btn btn--primary btn--play" id="btn-play" data-i18n="game.endTurn">End turn</button>
+          <button class="btn btn--undo-move" id="btn-undo-move" data-i18n-aria="game.undoMove" data-i18n-title="game.undoMove" aria-label="Undo move" title="Undo move" hidden><span class="ico" aria-hidden="true">↶</span> <span class="lbl" data-i18n="game.undoMove">Undo move</span></button>
+          <button class="btn" id="btn-sort" data-i18n="game.sort" hidden>Sort</button>
+          <button class="btn btn--primary btn--done" id="btn-done-arrange" hidden><span class="ico" aria-hidden="true">✓</span> <span class="lbl" data-i18n="common.done">Done</span></button>
         </div>
         <!-- A finished round has no in-game action left, so this swaps in for #game-actions
              (see syncRoundActions) and gives the table its two ways forward. -->
@@ -76,19 +80,14 @@
           <button class="btn btn--primary" id="btn-next-round" data-i18n="game.nextRound">Next round</button>
           <button class="btn" id="btn-new-game" data-i18n="common.newGame">New game</button>
         </div>
-        <div class="actions actions--arrange" id="arrange-actions" hidden>
-          <button class="btn btn--undo-move" id="btn-undo-move"><span class="ico" aria-hidden="true">↶</span> <span class="lbl" data-i18n="game.undoMove">Undo move</span></button>
-          <button class="btn" id="btn-cancel-pick" data-i18n="game.cancelPick">Cancel pick</button>
-          <button class="btn btn--primary btn--done" id="btn-done-arrange"><span class="ico" aria-hidden="true">✓</span> <span class="lbl" data-i18n="common.done">Done</span></button>
-        </div>
         <div class="toolbar">
           <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
           <button class="btn btn--chip" id="btn-rack-mode" hidden data-i18n="game.rackModeMulti" data-i18n-title="game.rackModeTitle" title="Show the hand in more lines">Multi</button>
           <button class="btn btn--icon btn--arrange" id="btn-arrange" data-i18n-aria="game.arrangeLabel" data-i18n-title="game.arrangeTitle" aria-label="Arrange your rack" title="Arrange your rack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13m-4-4 4 4-4 4M20 15H7m4-4-4 4 4 4"/></svg></button>
-          <button class="btn btn--icon" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
+          <button class="btn btn--icon btn--hand-tools" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
         </div>
       </div>
-      <p id="rack-hint" data-i18n="rackHint.arrange">Tap another stone’s left half (before) or right half (after).</p>
+      <p id="rack-hint" data-i18n="rackHint.arrange">Tap a stone, then tap a gap to drop it there.</p>
       <div class="rack" id="rack"></div>
     </section>
   </div>

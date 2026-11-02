@@ -67,8 +67,8 @@ The game is available in **English and Serbian (Latin)**. Switch from the in-gam
 - **A table-first screen** — the felt gets the room, the hand sits below it in the flow (so
   the last meld is never covered), and the newest meld is outlined with a *"player · +N"* tag
   so you can see what just moved.
-- **Arrange mode** — pick a stone, then tap the left or right half of another to place it
-  exactly where you want. Full undo.
+- **Arrange mode** — pick a stone, then tap the gap where it belongs; it lands on that boundary
+  and the others shift along. Full undo.
 - **Rounds and scoring** — the round winner takes the value of everyone else's remaining
   stones (a joker in hand counts 30); totals accumulate and the starting player rotates.
 - **Match history and stats** — head-to-head record, rounds, draws, current streak and an
@@ -99,7 +99,7 @@ Online play needs both players online at the same time over an encrypted relay c
 ## Notes
 
 - This repository contains **the built game only** — the playable output of a private
-  source tree. The build is versioned: the version this page was built from is **v0.41.74**
+  source tree. The build is versioned: the version this page was built from is **v0.41.80**
   and it is also shown on screen (☰ menu), so you can tell which build your phone is running.
 - The app is installable/offline via a service worker; when a new version is published your
   phone picks it up on the next launch.
