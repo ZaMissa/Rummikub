@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.86">
-  <meta name="app-built" content="2026-11-02 18:16">
+  <meta name="app-version" content="0.41.87">
+  <meta name="app-built" content="2026-11-02 19:09">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -113,6 +113,9 @@
           <button class="btn" id="btn-new-game" data-i18n="common.newGame">New game</button>
         </div>
         <div class="toolbar">
+          <!-- UIU-21: the table stone size, one tap to cycle Small/Medium/Large, persisted per
+               device. The letter is the current step; the tooltip/aria name the size in full. -->
+          <button class="btn btn--chip btn--zoom" id="btn-zoom" data-i18n-title="table.size" aria-label="Stone size" title="Stone size">M</button>
           <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
           <button class="btn btn--chip" id="btn-rack-mode" hidden data-i18n="game.rackModeMulti" data-i18n-title="game.rackModeTitle" title="Show the hand in more lines">Multi</button>
           <button class="btn btn--icon btn--arrange" id="btn-arrange" data-i18n-aria="game.arrangeLabel" data-i18n-title="game.arrangeTitle" aria-label="Arrange your rack" title="Arrange your rack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13m-4-4 4 4-4 4M20 15H7m4-4-4 4 4 4"/></svg></button>
