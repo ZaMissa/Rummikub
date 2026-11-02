@@ -6,13 +6,45 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.83">
-  <meta name="app-built" content="2026-11-02 17:20">
+  <meta name="app-version" content="0.41.84">
+  <meta name="app-built" content="2026-11-02 17:32">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
 </head>
 <body>
+  <!-- [UIU-05] The icon sprite: every UI icon is one <symbol> here, drawn with <use>. No emoji,
+       no platform glyph fonts. `ui/icons.js#icon(name)` renders the same symbols in JS. -->
+  <svg class="icon-sprite" aria-hidden="true" focusable="false"><defs>
+    <symbol id="ico-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="ico-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="ico-chevronDown" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="ico-chevronRight" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="ico-chevronLeft" viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></symbol>
+    <symbol id="ico-undo" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-4"/></symbol>
+    <symbol id="ico-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="ico-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+    <symbol id="ico-more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="ico-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+    <symbol id="ico-arrowRight" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="ico-expand" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+    <symbol id="ico-shrink" viewBox="0 0 24 24"><path d="M3 8h5V3m13 5h-5V3M8 21v-5H3m13 5v-5h5"/></symbol>
+    <symbol id="ico-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+    <symbol id="ico-device" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 18h4"/></symbol>
+    <symbol id="ico-hand" viewBox="0 0 24 24"><rect x="3" y="7" width="7" height="13" rx="2"/><rect x="14" y="4" width="7" height="16" rx="2"/><path d="M6 11h1m10-3h1"/></symbol>
+    <symbol id="ico-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="3"/><path d="M7 18v3m10-3v3M8 9h8m-8 4h5"/></symbol>
+    <symbol id="ico-sound" viewBox="0 0 24 24"><path d="M11 4 5 9H2v6h3l6 5zM15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="ico-look" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18h1a2 2 0 0 0 1-4 2 2 0 0 1 1-4h3a3 3 0 0 0 3-3c0-4-4-7-9-7Z"/><path d="M7 9h.01M11 6h.01M16 7h.01M6 14h.01"/></symbol>
+    <symbol id="ico-data" viewBox="0 0 24 24"><path d="M3 7h18v13H3zM3 7V4h7l2 3m-4 6h8m-8 4h5"/></symbol>
+    <symbol id="ico-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9m-10 12v-7h6v7"/></symbol>
+    <symbol id="ico-room" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 5a5 5 0 0 1 2 4v2"/></symbol>
+    <symbol id="ico-history" viewBox="0 0 24 24"><path d="M3 11a9 9 0 1 1 3 8M3 4v7h7m2-4v6l4 2"/></symbol>
+    <symbol id="ico-stats" viewBox="0 0 24 24"><path d="M4 20V10m8 10V4m8 16v-7"/></symbol>
+    <symbol id="ico-options" viewBox="0 0 24 24"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/></symbol>
+    <symbol id="ico-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2c-2 1-2 2-2 3m0 3h.01"/></symbol>
+    <symbol id="ico-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l4-1L21 6l-5-5L3 14z"/></symbol>
+    <symbol id="ico-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+  </defs></svg>
   <header class="topbar">
     <div class="brand">
       <h1>Rummikub</h1>
@@ -22,7 +54,7 @@
       <button class="btn btn--icon" id="awayBadge" hidden data-i18n="header.updates" data-i18n-title="header.updatesTitle" title="What happened while you were away">Updates</button>
       <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden data-i18n="header.nudge" data-i18n-title="header.nudgeTitle" title="Nudge the current player">Nudge</button>
       <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" data-i18n-aria="device.enterFullscreen" data-i18n-title="device.enterFullscreen" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
-      <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" data-i18n-aria="header.gameMenu" aria-label="Game menu">☰</button>
+      <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" data-i18n-aria="header.gameMenu" aria-label="Game menu"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-menu"/></svg></button>
     </div>
   </header>
 
@@ -50,29 +82,29 @@
     <section class="rackpanel" id="rackpanel">
       <!-- The in-game Hand & table drawer (v0.41.70): compact controls that slide out ABOVE the
            strip and leave the hand + felt visible, so a sort/hide/tile-size tap shows its effect
-           immediately. Opened by •••; the rows are the same options the sheet renders. -->
+           immediately. Opened by the tools button; the rows are the same options the sheet renders. -->
       <div class="drawer" id="hand-drawer" data-i18n-aria="hand.title" aria-label="Hand &amp; table">
         <div class="drawer-head">
           <b data-i18n="hand.title">Hand &amp; table</b>
-          <button class="btn btn--icon" id="btn-drawer-close" data-i18n-aria="common.close" aria-label="Close">×</button>
+          <button class="btn btn--icon" id="btn-drawer-close" data-i18n-aria="common.close" aria-label="Close"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-close"/></svg></button>
         </div>
         <div class="drawer-body" id="drawer-body"></div>
       </div>
       <!-- Collapse lives on the panel's border, not inside the control strip (v0.41.68). -->
-      <button class="btn btn--glyph rack-handle" id="btn-collapse" data-i18n-aria="device.rackCollapse" data-i18n-title="device.rackToggleTitle" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack">⌄</button>
+      <button class="btn btn--glyph rack-handle" id="btn-collapse" data-i18n-aria="device.rackCollapse" data-i18n-title="device.rackToggleTitle" aria-label="Collapse the rack" aria-expanded="true" title="Collapse or show the rack"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-chevronDown"/></svg></button>
       <!-- One control strip: [Undo] [contextual primary] + [Arrange] [more]. Placement (above or
            below the hand) is a setting; the default is above. Arrange does not add a second row —
            the same strip swaps contents to [Undo move] [Sort] [Done], so the play actions are absent
            while arranging (UIU-27, decisions #17–#18). See syncActionBar(). -->
       <div class="controlstrip">
         <div class="actions actions--game" id="game-actions">
-          <button class="btn btn--undo" id="btn-undo" data-i18n-aria="game.undoLast" data-i18n-title="game.undoLast" aria-label="Undo last move" title="Undo last move">↶</button>
-          <button class="btn btn--meld" id="btn-meld"><span class="ico" aria-hidden="true">＋</span> <span class="lbl" data-i18n="board.meld">Meld</span></button>
+          <button class="btn btn--undo" id="btn-undo" data-i18n-aria="game.undoLast" data-i18n-title="game.undoLast" aria-label="Undo last move" title="Undo last move"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-undo"/></svg></button>
+          <button class="btn btn--meld" id="btn-meld"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-plus"/></svg> <span class="lbl" data-i18n="board.meld">Meld</span></button>
           <button class="btn btn--draw" id="btn-draw" data-i18n="game.draw">Draw</button>
           <button class="btn btn--primary btn--play" id="btn-play" data-i18n="game.endTurn">End turn</button>
-          <button class="btn btn--undo-move" id="btn-undo-move" data-i18n-aria="game.undoMove" data-i18n-title="game.undoMove" aria-label="Undo move" title="Undo move" hidden><span class="ico" aria-hidden="true">↶</span> <span class="lbl" data-i18n="game.undoMove">Undo move</span></button>
+          <button class="btn btn--undo-move" id="btn-undo-move" data-i18n-aria="game.undoMove" data-i18n-title="game.undoMove" aria-label="Undo move" title="Undo move" hidden><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-undo"/></svg> <span class="lbl" data-i18n="game.undoMove">Undo move</span></button>
           <button class="btn" id="btn-sort" data-i18n="game.sort" hidden>Sort</button>
-          <button class="btn btn--primary btn--done" id="btn-done-arrange" hidden><span class="ico" aria-hidden="true">✓</span> <span class="lbl" data-i18n="common.done">Done</span></button>
+          <button class="btn btn--primary btn--done" id="btn-done-arrange" hidden><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-check"/></svg> <span class="lbl" data-i18n="common.done">Done</span></button>
         </div>
         <!-- A finished round has no in-game action left, so this swaps in for #game-actions
              (see syncRoundActions) and gives the table its two ways forward. -->
@@ -84,7 +116,7 @@
           <!-- UIU-20: shown when Single cannot hold the hand at the 26 px floor — one tap switches -->
           <button class="btn btn--chip" id="btn-rack-mode" hidden data-i18n="game.rackModeMulti" data-i18n-title="game.rackModeTitle" title="Show the hand in more lines">Multi</button>
           <button class="btn btn--icon btn--arrange" id="btn-arrange" data-i18n-aria="game.arrangeLabel" data-i18n-title="game.arrangeTitle" aria-label="Arrange your rack" title="Arrange your rack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13m-4-4 4 4-4 4M20 15H7m4-4-4 4 4 4"/></svg></button>
-          <button class="btn btn--icon btn--hand-tools" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
+          <button class="btn btn--icon btn--hand-tools" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-more"/></svg></button>
         </div>
       </div>
       <p class="rack-hint" id="rack-hint" data-i18n="rackHint.arrange">Tap a stone, then tap a gap to drop it there.</p>
