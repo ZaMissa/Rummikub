@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.82">
-  <meta name="app-built" content="2026-11-02 17:04">
+  <meta name="app-version" content="0.41.83">
+  <meta name="app-built" content="2026-11-02 17:20">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -34,13 +34,13 @@
     <div class="status">
       <div class="row row--between row--nowrap">
         <div class="turnline">
-          <strong id="turn-title" data-i18n="hud.readyToPlay">Ready to play</strong>
-          <small id="turn-sub"></small>
+          <strong class="turn-title" id="turn-title" data-i18n="hud.readyToPlay">Ready to play</strong>
+          <small class="turn-sub" id="turn-sub"></small>
           <p class="hint statusline" id="status"></p>
         </div>
         <span class="pool" id="pool">106 in pool</span>
       </div>
-      <div id="toast" role="status" aria-live="polite"></div>
+      <div class="status-toast" id="toast" role="status" aria-live="polite"></div>
     </div>
 
     <section class="board" id="board">
@@ -87,7 +87,7 @@
           <button class="btn btn--icon btn--hand-tools" id="btn-hand-tools" data-i18n-aria="game.handTools" data-i18n-title="game.handToolsTitle" aria-label="Hand &amp; table tools" title="Sort and hand options">•••</button>
         </div>
       </div>
-      <p id="rack-hint" data-i18n="rackHint.arrange">Tap a stone, then tap a gap to drop it there.</p>
+      <p class="rack-hint" id="rack-hint" data-i18n="rackHint.arrange">Tap a stone, then tap a gap to drop it there.</p>
       <div class="rack" id="rack"></div>
     </section>
   </div>
@@ -98,7 +98,7 @@
 
   <!-- The turn signal (slice 0): one "who plays next" notice for every table. In pass
        & play it gates the hand-over; online and solo it auto-dismisses. -->
-  <div class="ov" id="ov-curtain" hidden>
+  <div class="ov ov-curtain" id="ov-curtain" hidden>
     <div class="curtaininner">
       <div class="eyebrow" id="curtain-eyebrow" data-i18n="curtain.eyebrow">Pass &amp; play</div>
       <h2 id="curtain-title" data-i18n="curtain.title">Pass the phone</h2>
