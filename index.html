@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.106">
-  <meta name="app-built" content="2026-11-03 19:12">
+  <meta name="app-version" content="0.41.108">
+  <meta name="app-built" content="2026-11-03 20:38">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -44,11 +44,13 @@
     <symbol id="ico-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2c-2 1-2 2-2 3m0 3h.01"/></symbol>
     <symbol id="ico-edit" viewBox="0 0 24 24"><path d="m15 4 5 5M4 20l4-1L21 6l-5-5L3 14z"/></symbol>
     <symbol id="ico-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
+    <symbol id="ico-update" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4.5h-4.5"/></symbol>
   </defs></svg>
   <header class="topbar">
     <span class="logo" aria-hidden="true">R</span>
     <span class="mode-line" id="mode-line" data-i18n="mode.onThisPhone">On this phone</span>
     <div class="row row--nowrap header-actions">
+      <button class="btn btn--icon btn--update" id="btn-update" hidden data-i18n-aria="header.update" data-i18n-title="header.updateTitle" aria-label="Reload to update" title="A new version is ready"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-update"/></svg></button>
       <button class="btn btn--icon btn--badge" id="awayBadge" hidden data-i18n-aria="header.updates" data-i18n-title="header.updatesTitle" aria-label="Updates" title="What happened while you were away"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-history"/></svg><span class="badgeCount" id="awayCount"></span></button>
       <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden data-i18n-aria="header.nudge" data-i18n-title="header.nudgeTitle" aria-label="Nudge" title="Nudge the current player"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-sound"/></svg></button>
       <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" data-i18n-aria="device.enterFullscreen" data-i18n-title="device.enterFullscreen" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
