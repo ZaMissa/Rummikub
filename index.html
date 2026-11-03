@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.103">
-  <meta name="app-built" content="2026-11-03 17:09">
+  <meta name="app-version" content="0.41.104">
+  <meta name="app-built" content="2026-11-03 17:43">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -46,13 +46,11 @@
     <symbol id="ico-trash" viewBox="0 0 24 24"><path d="M3 6h18M9 6V3h6v3M5 6l1 15h12l1-15M10 10v7m4-7v7"/></symbol>
   </defs></svg>
   <header class="topbar">
-    <div class="brand">
-      <h1>Rummikub</h1>
-    </div>
+    <span class="logo" aria-hidden="true">R</span>
     <span class="mode-line" id="mode-line" data-i18n="mode.onThisPhone">On this phone</span>
     <div class="row row--nowrap header-actions">
-      <button class="btn btn--icon" id="awayBadge" hidden data-i18n="header.updates" data-i18n-title="header.updatesTitle" title="What happened while you were away">Updates</button>
-      <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden data-i18n="header.nudge" data-i18n-title="header.nudgeTitle" title="Nudge the current player">Nudge</button>
+      <button class="btn btn--icon btn--badge" id="awayBadge" hidden data-i18n-aria="header.updates" data-i18n-title="header.updatesTitle" aria-label="Updates" title="What happened while you were away"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-history"/></svg><span class="badgeCount" id="awayCount"></span></button>
+      <button class="btn btn--icon btn--nudge" id="btn-nudge" hidden data-i18n-aria="header.nudge" data-i18n-title="header.nudgeTitle" aria-label="Nudge" title="Nudge the current player"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-sound"/></svg></button>
       <button class="btn btn--icon btn--fullscreen" id="fullscreenBtn" data-i18n-aria="device.enterFullscreen" data-i18n-title="device.enterFullscreen" aria-label="Enter full screen" title="Enter full screen" aria-pressed="false"></button>
       <button class="btn btn--icon btn--menu" id="menuBtn" data-action="menu" data-i18n-aria="header.gameMenu" aria-label="Game menu"><svg class="ico" aria-hidden="true" viewBox="0 0 24 24"><use href="#ico-menu"/></svg></button>
     </div>
