@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.104">
-  <meta name="app-built" content="2026-11-03 17:43">
+  <meta name="app-version" content="0.41.105">
+  <meta name="app-built" content="2026-11-03 18:03">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -57,21 +57,6 @@
   </header>
 
   <div class="banner net" id="net-banner" role="status" aria-live="polite" hidden></div>
-
-  <!-- The "who plays next" signal: a strip that takes its own row ABOVE the table, so it pushes the
-       chrome down instead of covering it (nothing is hidden, a remote move stays visible). In pass &
-       play it also hides the hand (body.gate-hand) until Ready, instead of covering the screen. -->
-  <div class="ov-curtain" id="ov-curtain" hidden>
-    <div class="curtaininner">
-      <span class="curtaindot" aria-hidden="true"></span>
-      <div class="curtaintext">
-        <div class="eyebrow" id="curtain-eyebrow" data-i18n="curtain.eyebrow">Pass &amp; play</div>
-        <h2 id="curtain-title" data-i18n="curtain.title">Pass the phone</h2>
-        <p id="curtain-sub" data-i18n="curtain.sub">Stones stay hidden until Ready.</p>
-      </div>
-      <button class="btn btn--primary" id="curtain-btn" data-action="dismiss-curtain" data-i18n="curtain.ready">I'm ready</button>
-    </div>
-  </div>
 
   <div class="wrap">
     <div class="players" id="players" data-i18n-aria="hud.playersAria" aria-label="Players"></div>
@@ -141,12 +126,24 @@
     </section>
   </div>
 
+  <!-- The turn signal: one "who plays next" strip for every table. It OVERLAYS the chrome (fixed,
+       not in flow), so the chrome never jumps. In pass & play it gates the hand-over (hides the
+       hand, Ready button); online and solo it auto-dismisses. -->
+  <div class="ov-curtain" id="ov-curtain" hidden>
+    <div class="curtaininner">
+      <span class="curtaindot" aria-hidden="true"></span>
+      <div class="curtaintext">
+        <div class="eyebrow" id="curtain-eyebrow" data-i18n="curtain.eyebrow">Pass &amp; play</div>
+        <h2 id="curtain-title" data-i18n="curtain.title">Pass the phone</h2>
+        <p id="curtain-sub" data-i18n="curtain.sub">Stones stay hidden until Ready.</p>
+      </div>
+      <button class="btn btn--primary" id="curtain-btn" data-action="dismiss-curtain" data-i18n="curtain.ready">I'm ready</button>
+    </div>
+  </div>
+
   <div class="ov" id="ov-dialog" hidden>
     <div class="card" id="dialog-card"></div>
   </div>
-
-  <!-- The turn signal (slice 0): one "who plays next" notice for every table. In pass
-       & play it gates the hand-over; online and solo it auto-dismisses. -->
   <script type="module" src="./assets/app.js"></script>
 <script>
 if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
