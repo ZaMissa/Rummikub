@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b2823">
   <title>Rummikub Table</title>
   <link rel="stylesheet" href="./assets/app.css">
-  <meta name="app-version" content="0.41.108">
-  <meta name="app-built" content="2026-11-03 20:38">
+  <meta name="app-version" content="0.41.109">
+  <meta name="app-built" content="2026-11-04 15:11">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <link rel="icon" href="icons/icon-192.png">
@@ -125,6 +125,10 @@
       <p class="rack-hint" id="rack-hint" data-i18n="rackHint.arrange">Tap a stone, then tap a gap to drop it there.</p>
       <div class="rack" id="rack"></div>
     </section>
+
+    <!-- A second game renders its own screen here (games/tablic). The Rummikub board/rack are
+         hidden by `body.tablic-mode`; the topbar and status strip (toasts) stay. -->
+    <section class="tablic-root" id="tablic-root" hidden></section>
   </div>
 
   <!-- The turn signal: one "who plays next" strip for every table. It OVERLAYS the chrome (fixed,
